@@ -4,7 +4,7 @@ const vehicleSchema = new mongoose.Schema({
   name: { type: String, required: true },
   price: { type: Number, required: true },
   size: { type: String, required: true },
-  isAvailable: { type: Boolean, required: true },
+  isAvailable: { type: Boolean, default: false },
 })
 
 vehicleSchema.set('toJSON', {

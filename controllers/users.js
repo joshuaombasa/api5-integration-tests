@@ -4,7 +4,7 @@ const User = require('../models/user')
 
 
 
-usersRouter.get('/', async (request, response) => {
+usersRouter.get('/', async (request, response, next) => {
   try {
     const users = await User.find({})
     response.send(users)
@@ -13,7 +13,7 @@ usersRouter.get('/', async (request, response) => {
   }
 })
 
-usersRouter.get('/:id', async (request, response) => {
+usersRouter.get('/:id', async (request, response, next) => {
   try {
     const user = await User.findById(request.params.id)
     if (!user) {
@@ -26,7 +26,7 @@ usersRouter.get('/:id', async (request, response) => {
 })
 
 
-usersRouter.post('/', async (request, response) => {
+usersRouter.post('/', async (request, response, next) => {
   const { email, password } = request.body
   try {
     const userObject = new User()
@@ -37,7 +37,7 @@ usersRouter.post('/', async (request, response) => {
   }
 })
 
-usersRouter.put('/:id', async (request, response) => {
+usersRouter.put('/:id', async (request, response, next) => {
   const { email, password } = request.body
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -51,7 +51,7 @@ usersRouter.put('/:id', async (request, response) => {
 })
 
 
-usersRouter.delete('/:id', async (request, response) => {
+usersRouter.delete('/:id', async (request, response, next) => {
   try {
     await User.findByIdAndDelete(request.params.id)
     response.sendStatus(204)

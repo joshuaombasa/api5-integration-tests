@@ -16,4 +16,4 @@ vehicleSchema.set('toJSON', {
   }
 })
 
-module.exports = vehicleSchema
+module.exports = mongoose.model('Vehicle', vehicleSchema)

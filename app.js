@@ -9,6 +9,10 @@ const middleware = require('./utils/middleware')
 const usersRouter = require('./controllers/users')
 const vehiclesRouter = require('./controllers/vehicles')
 
+mongoose.connect(config.MONGO_URI)
+     .then(() => logger.info(`connected to mongodb`))
+     .catch(error => logger.error(error))
+
 
 
 

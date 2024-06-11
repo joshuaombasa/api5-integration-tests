@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true },
   password: { type: Number, required: true },
-  
+
 })
 
 userSchema.set('toJSON', {
@@ -15,4 +15,4 @@ userSchema.set('toJSON', {
   }
 })
 
-module.exports = userSchema
+module.exports = mongoose.model('User', userSchema)

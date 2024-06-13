@@ -3,7 +3,7 @@ const vehiclesRouter = express.Router()
 const Vehicle = require('../models/vehicle')
 
 
-vehiclesRouter.get('/', async (request, response) => {
+vehiclesRouter.get('/', async (request, response, next) => {
   try {
     const vehicles = await Vehicle.find({})
 
@@ -13,7 +13,7 @@ vehiclesRouter.get('/', async (request, response) => {
   }
 })
 
-vehiclesRouter.get('/:id', async (request, response) => {
+vehiclesRouter.get('/:id', async (request, response, next) => {
   try {
     const vehicle = await Vehicle.findById(request.params.id)
     if (!vehicle) {
@@ -25,7 +25,7 @@ vehiclesRouter.get('/:id', async (request, response) => {
   }
 })
 
-vehiclesRouter.post('/', async (request, response) => {
+vehiclesRouter.post('/', async (request, response, next) => {
   const { name, price, size, isAvailable } = request.body
   try {
     const vehicleObject = new Vehicle({ name, price, size, isAvailable })
@@ -36,7 +36,7 @@ vehiclesRouter.post('/', async (request, response) => {
   }
 })
 
-vehiclesRouter.put('/:id', async (request, response) => {
+vehiclesRouter.put('/:id', async (request, response, next) => {
 
   const { name, price, size, isAvailable } = request.body
 
@@ -52,7 +52,7 @@ vehiclesRouter.put('/:id', async (request, response) => {
   }
 })
 
-vehiclesRouter.delete('/:id', async (request, response) => {
+vehiclesRouter.delete('/:id', async (request, response, next) => {
   try {
     await Vehicle.findByAndDelete(request.params.id)
     response.sendStatus(204)

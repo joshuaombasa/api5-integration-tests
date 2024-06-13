@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.set('toJSON', {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject_id.toString()
+    returnedObject.id = returnedObject._id.toString()
 
     returnedObject._id
     returnedObject.__v

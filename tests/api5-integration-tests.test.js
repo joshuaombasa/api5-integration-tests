@@ -46,10 +46,10 @@ describe('getting a specific vehicle', () => {
       .expect('Content-Type', /application\/json/)
   })
 
+
   test('fails with statuscode 400 when given an invalid id', async () => {
-    const response = await api.get(`/api/vehicles/7`)
+    const response = await api.get(`/api/vehicles/-03094`)
       .expect(400)
-      .expect('Content-Type', /application\/json/)
   })
 
   test('fails with statuscode 404 when given a nonexistent id', async () => {

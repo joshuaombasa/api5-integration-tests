@@ -21,7 +21,6 @@ vehiclesRouter.get('/:id', async (request, response, next) => {
     }
     response.send(vehicle)
   } catch (error) {
-    console.log(error.name)
     next(error)
   }
 })

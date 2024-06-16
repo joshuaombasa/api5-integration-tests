@@ -1,3 +1,6 @@
+const vehicle = require('../models/vehicle')
+const Vehicle = require('../models/vehicle')
+
 const vehiclesData = [{
   name: 'vehicle1',
   price: '100',
@@ -35,6 +38,25 @@ const vehiclesData = [{
   isAvailable: false
 },]
 
+const nonExistentId = async () => {
+  const vehicleObject = new Vehicle({
+    name: 'vehicle6',
+    price: '600',
+    size: 'small',
+    isAvailable: false
+  })
+
+  const savedVehicle = await vehicleObject.save()
+  await Vehicle.findByIdAndDelete(savedVehicle._id)
+  return savedVehicle._id.toString()
+}
+
+const vehiclesInDb = async () => {
+  const vehiclesRaw = await Vehicle.find({})
+  return vehiclesRaw.map(vehicle => vehicle.toJSON())
+
+}
 
 
-module.exports = { vehiclesData }
+
+module.exports = { vehiclesData, vehiclesInDb, nonExistentId }

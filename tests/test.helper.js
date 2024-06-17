@@ -31,12 +31,7 @@ const vehiclesData = [{
   size: 'small',
   isAvailable: false
 },
-{
-  name: 'vehicle6',
-  price: '600',
-  size: 'small',
-  isAvailable: false
-},]
+]
 
 const nonExistentId = async () => {
   const vehicleObject = new Vehicle({

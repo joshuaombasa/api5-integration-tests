@@ -54,7 +54,7 @@ vehiclesRouter.put('/:id', async (request, response, next) => {
 
 vehiclesRouter.delete('/:id', async (request, response, next) => {
   try {
-    await Vehicle.findByAndDelete(request.params.id)
+    await Vehicle.findByIdAndDelete(request.params.id)
     response.sendStatus(204)
   } catch (error) {
     next(error)

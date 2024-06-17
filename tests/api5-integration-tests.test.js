@@ -59,7 +59,38 @@ describe('getting a specific vehicle', () => {
   })
 })
 
+describe('addition of a new vehicle ', () => {
+  test('works when given valid data', async () => {
+    const response = await api.post('/api/vehicles')
+      .send({
+        name: 'vehicle6',
+        price: '600',
+        size: 'small',
+        isAvailable: false
+      })
+      .expect(201)
+      .expect('Content-Type', /application\/json/)
+  })
 
+  test('fails with statuscode 400 when given invalid data', async () => {
+    const response = await api.post('/api/vehicles')
+      .send({
+        name: 'vehicle7',
+        isAvailable: false
+      })
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+  })
+})
+
+describe('deleting a vehicle', () => {
+  test('works when given a valid id', async() => {
+    const vehiclesInDb = await helper.vehiclesInDb()
+    console.log(vehiclesInDb[0].id)
+    const response = await api.delete(`/api/vehicles/${vehiclesInDb[0].id}`)
+    .expect(204)
+  })
+})
 
 
 afterAll(async () => {
